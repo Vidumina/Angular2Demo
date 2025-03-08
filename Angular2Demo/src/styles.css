@@ -1,0 +1,16 @@
+.boldClass{
+    font-weight:bold;
+}
+.italicsClass{
+    font-style:italic;
+}
+
+.colorClass{
+    color:red;
+}
+/*button{
+    width:200px;
+    height:60px;
+    font-size:large;
+}
+*/
