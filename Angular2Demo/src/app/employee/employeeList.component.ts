@@ -1,12 +1,15 @@
 import { Component,OnInit } from '@angular/core';
 import { IEmployee } from './employee';
 import { EmployeeService } from './employee.service';
+import { UserPreferencesService } from '../employee/userPreferences.service';
+
 
 @Component({
   selector: 'list-employee',
   templateUrl: './employeeList.component.html',
   styleUrls: ['./employeeList.component.css'],
   standalone: false
+
   
 })
 
@@ -18,16 +21,25 @@ export class EmployeeListComponent implements OnInit {
 
   slectedEmployeeCountRadioButton: string = 'All';
   isLoading: boolean = true;
-  statusMessage: string ='Loading data. Please wait...';
-
-  constructor(private _employeeService: EmployeeService) {
-
-  }
+  statusMessage: string = 'Loading data. Please wait...';
   
 
 
+  constructor(private _employeeService: EmployeeService, private _userPreferencesService: UserPreferencesService) {
+
+  }
+  
+  get colour(): string {
+    return this._userPreferencesService.colourPreference;
+  }
+
+  set colour(value: string) {
+    this._userPreferencesService.colourPreference = value;
+  }
+
   ngOnInit() {
-    this._employeeService.getEmployees().subscribe({
+    this._employeeService.getEmployees()
+      .subscribe({
       next: (employeeData) => {
         this.employees = employeeData,
           this.isLoading = false;

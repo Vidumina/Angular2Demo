@@ -4,12 +4,15 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { IEmployee } from './employee';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  private apiUrl = 'https://localhost:7273/api/employees'; 
+  private apiUrl = 'https://localhost:7273/api/employees';
+  private apiUrlGetOneEmployee = 'https://localhost:7273/api/employees/'; 
+
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +21,36 @@ export class EmployeeService {
 
 
   }
+
+  //async getEmployeeByCode(empCode: string): Promise<IEmployee> {
+
+  //  try {
+  //    return await firstValueFrom(
+
+  //      this.http.get<IEmployee>(`${this.apiUrlGetOneEmployee}${empCode}`).pipe(catchError(this.handleError))
+  //    );
+
+  //  } catch (e) {
+  //    throw e;
+
+
+  //  }
+
+
+  //}
+
+
+  getEmployeeByCode(empCode:string): Observable<IEmployee> {
+    return this.http.get<IEmployee>(this.apiUrlGetOneEmployee + empCode).pipe(catchError(this.handleError));
+
+
+  }
+
+
+
+  
+
+  
 
   handleError(error: HttpErrorResponse) {
 

@@ -14,15 +14,19 @@ import { EmpoloyeeCountComponent } from './employee/employeeCount.component'
 import { SimpleComponent } from './employee/Others/Simple.component'
 import { HomeComponent } from './home/home.component'
 import { PageNotFoundComponent } from './employee/Others/pageNotFound.component'
+import { UserPreferencesService } from './employee/userPreferences.service';
+import { TestModule } from './test.module';
+
+
 
 
 
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, EmployeeTitlePipe, HttpClientModule, CommonModule, EmployeeComponent, AppRoutingModule],
+  imports: [BrowserModule, FormsModule, EmployeeTitlePipe, HttpClientModule, CommonModule, EmployeeComponent, AppRoutingModule, TestModule],
   declarations: [AppComponent, EmployeeListComponent, EmpoloyeeCountComponent, SimpleComponent, HomeComponent, PageNotFoundComponent ],
+  bootstrap: [AppComponent],
 
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: []
 })
 export class AppModule { }

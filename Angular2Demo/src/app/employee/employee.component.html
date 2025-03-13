@@ -1,37 +1,52 @@
 
 
 
-<table>
+<table *ngIf="employee" class="mt-3">
   <thead>
     <tr>
-      <th [attr.colspan]="columnSpan">Employee Details</th>
+      <th colspan="2">Employee Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>First Name</td>
-      <td>{{firstName}}</td>
+      <td>Employee Code</td>
+      <td>{{employee.code}}</td>
 
     </tr>
     <tr>
-      <td>Last Name</td>
-      <td>{{lastName}}</td>
+      <td>Name</td>
+      <td>{{employee.name}}</td>
 
     </tr>
-    <tr *ngIf='showDetails'>
+    <tr>
       <td>Gender</td>
-      <td>{{gender}}</td>
+      <td>{{employee.gender}}</td>
 
     </tr>
-    <tr *ngIf='showDetails'>
-      <td>Age</td>
-      <td>{{age}}</td>
+    <tr>
+      <td>Annual Salary</td>
+      <td>{{employee.annualSalary}}</td>
+
+    </tr>
+    <tr>
+      <td>Date of Birth</td>
+      <td>{{employee.dateOfBirth}}</td>
 
     </tr>
   </tbody>
 
  
 </table>
-<br />
-<button (click)="toggleDetails()">{{showDetails?'Hide':'Show'}} Details</button>
+<div *ngIf="!employee">
+  {{statusMessage}}
+
+</div>
+<div class="mt-2">
+  <input type="button" class="btn btn-primary" value="Back to Employee List" (click)="onBackButtClick()" />
+
+</div>
+<div class="mt-2" *ngIf="!subscription?.closed">
+  <input type="button" class="btn btn-primary" value="Cancel Request" (click)="onCancelButtClick()" />
+
+</div>
 
